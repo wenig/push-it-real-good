@@ -23,7 +23,7 @@ var server = http.createServer(app)
 server.listen(port)
 
 PushItRealGood.webSocketServer = new WebSocketServer({server: server})
-console.log("websocket server created: \n"+wss)
+console.log("websocket server created")
 
 PushItRealGood.webSocketServer.on("connection", function(ws) {
   console.log(this.connections)

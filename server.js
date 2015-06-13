@@ -9,11 +9,11 @@ app.get('/', function(req, res) {
   res.send('hello world')
 })
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 
 /*websocket*/
 
-var server = ws.createServer(function (conn) {
+/*var server = ws.createServer(function (conn) {
   console.log("Connection opened")
 
   conn.on("text", function (str) {
@@ -28,7 +28,7 @@ var server = ws.createServer(function (conn) {
 
 /*functions*/
 
-function broadcast(server, sender, msg) {
+/*function broadcast(server, sender, msg) {
   server.connections.forEach(function (conn) {
     if(sender != conn){
       conn.sendText(msg)

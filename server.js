@@ -35,7 +35,7 @@ PushItRealGood.webSocketServer.on("connection", function(ws) {
   ws.on("message", function (str) {
     console.log(str)
     var keys = str.split(' ')
-    PushItRealGood.register(keys[1], keys[0], ws)
+    PushItRealGood.register(keys[1], keys[0], this)
   })
 
   ws.on("close", function() {

@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
   res.send('hello world')
 })
 
-app.post('/', jsonParser, function(req, res){
+app.post('/push', jsonParser, function(req, res){
   console.log(req)
   res.send(PushItRealGood.go(req.body.auth_tokens, req.body.secret, req.body.api_key, req.body.message))
 })

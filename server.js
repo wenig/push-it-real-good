@@ -1,7 +1,17 @@
 var ws = require("nodejs-websocket"),
+    express = require('express'),
+    app = express(),
     clientConnections = {}
 
 /*server*/
+
+app.get('/', function(req, res) {
+  res.send('hello world')
+})
+
+app.listen(3000)
+
+/*websocket*/
 
 var server = ws.createServer(function (conn) {
   console.log("Connection opened")
@@ -16,7 +26,7 @@ var server = ws.createServer(function (conn) {
   })
 }).listen(8001)
 
-/*websocket*/
+/*functions*/
 
 function broadcast(server, sender, msg) {
   server.connections.forEach(function (conn) {

@@ -6,6 +6,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "nodejs-websocket": "~1.2.1"
+    "nodejs-websocket": "~1.2.1",
+    "express": "~4.0.0"
   }
 }

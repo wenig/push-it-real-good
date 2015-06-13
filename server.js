@@ -13,18 +13,20 @@ app.get('/generate_api_key', function(req, res){
   res.send(require('./endpoints/generate_api_key'))
 })
 
+app.post('/push', function(req, res){
+  res.send(PushItRealGood.go(req.body.auth_tokens, req.body.secret, req.body.api_key))
+})
+
 app.use(express.static(__dirname + "/"))
 
 var server = http.createServer(app)
 server.listen(port)
 
-console.log("http server listening on %d", port)
-
-var wss = new WebSocketServer({server: server})
+PushItRealGood.webSocketServer = new WebSocketServer({server: server})
 console.log("websocket server created: \n"+wss)
 
-wss.on("connection", function(ws) {
-  console.log("websocket connection open: \n"+ws)
+PushItRealGood.webSocketServer.on("connection", function(ws) {
+  console.log(this.connections)
 
   ws.on("text", function (str) {
     console.log(str)

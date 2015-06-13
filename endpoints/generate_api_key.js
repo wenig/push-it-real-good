@@ -1,5 +1,5 @@
 var uuid = require('node-uuid'),
-    db = require('./database')
+    db = require('./../database')
 
 var result = function Action(){
   console.log("test")

@@ -14,7 +14,7 @@ function PushItRealGood() {
       this.clientConnections[apiKey] = []
       this.clientConnections[apiKey][authToken] = connection
     }
-    console.log(apiKey+': '+authToken)
+    console.log(connection)
   }
 
   this.broadcast = function(server, sender, msg) {

@@ -1,30 +1,37 @@
-var ws = require("nodejs-websocket"),
-    express = require('express'),
+var WebSocketServer = require("ws").Server,
+    http = require("http"),
+    express = require("express"),
     app = express(),
+    port = process.env.PORT || 5000,
     clientConnections = {}
-
-/*server*/
 
 app.get('/', function(req, res) {
   res.send('hello world')
 })
 
-app.listen(process.env.PORT || 3000)
+app.use(express.static(__dirname + "/"))
 
-/*websocket*/
+var server = http.createServer(app)
+server.listen(port)
 
-var server = ws.createServer(function (conn) {
-  console.log("Connection opened")
+console.log("http server listening on %d", port)
 
-  conn.on("text", function (str) {
+var wss = new WebSocketServer({server: server})
+console.log("websocket server created")
+
+wss.on("connection", function(ws) {
+  console.log("websocket connection open: "+ws.key)
+
+  ws.on("text", function (str) {
     console.log(str)
     clientConnections[str] = conn.key
   })
 
-  conn.on("close", function (code, reason) {
-    console.log("Connection closed")
+  ws.on("close", function() {
+    console.log("websocket connection close")
+    clearInterval(id)
   })
-}).listen(process.env.PORT || 5000)
+})
 
 /*functions*/
 

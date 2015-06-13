@@ -24,7 +24,7 @@ app.listen(process.env.PORT || 3000)
   conn.on("close", function (code, reason) {
     console.log("Connection closed")
   })
-}).listen(8001)
+}).listen(8001)*/
 
 /*functions*/
 
@@ -34,4 +34,4 @@ app.listen(process.env.PORT || 3000)
       conn.sendText(msg)
     }
   })
-}
+}*/

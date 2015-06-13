@@ -32,7 +32,7 @@ console.log("Websocket Server runs")
 PushItRealGood.webSocketServer.on("connection", function(ws) {
   console.log("New Websocket Connection")
 
-  ws.on("text", function (str) {
+  ws.on("message", function (str) {
     console.log(str)
     var keys = str.split(' ')
     PushItRealGood.register(keys[1], keys[0], ws)

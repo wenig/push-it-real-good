@@ -1,7 +1,7 @@
 var uuid = require('node-uuid'),
     db = require('./../database')
 
-var action = function {
+var action = function() {
   console.log("test")
   var apiKeys = generateApiKeys()
   return 'secret: ' + apiKeys[0] + '<br>api-key: ' + apiKeys[1]

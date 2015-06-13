@@ -14,5 +14,5 @@ function generateApiKeys(){
   var secret = uuid.v4()
   var api_key = uuid.v4()
   db.callQuery("INSERT INTO users (secret, api_key) VALUES ('" + secret + "', '" + api_key + "');")
-  return [uuid.v4(), uuid.v4()]
+  return [secret, api_key]
 }

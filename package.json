@@ -1,0 +1,11 @@
+{
+  "name": "push-it-real-good",
+  "description": "websocket service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "nodejs-websocket": "~1.2.1"
+  }
+}

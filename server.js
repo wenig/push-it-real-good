@@ -13,7 +13,7 @@ app.listen(process.env.PORT || 3000)
 
 /*websocket*/
 
-/*var server = ws.createServer(function (conn) {
+var server = ws.createServer(function (conn) {
   console.log("Connection opened")
 
   conn.on("text", function (str) {
@@ -24,14 +24,14 @@ app.listen(process.env.PORT || 3000)
   conn.on("close", function (code, reason) {
     console.log("Connection closed")
   })
-}).listen(8001)*/
+}).listen(process.env.PORT || 5000)
 
 /*functions*/
 
-/*function broadcast(server, sender, msg) {
+function broadcast(server, sender, msg) {
   server.connections.forEach(function (conn) {
     if(sender != conn){
       conn.sendText(msg)
     }
   })
-}*/
+}

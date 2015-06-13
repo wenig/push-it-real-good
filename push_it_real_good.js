@@ -4,6 +4,8 @@ function PushItRealGood() {
   this.webSocketServer = null
 
   this.go = function(authToken, secret, apiKey, message){
+    console.log(this.clientConnections)
+    console.log(this.clientConnections[apiKey])
     this.clientConnections[apiKey][authToken].send(message)
   }
 
@@ -14,7 +16,6 @@ function PushItRealGood() {
       this.clientConnections[apiKey] = []
       this.clientConnections[apiKey][authToken] = connection
     }
-    console.log(connection)
   }
 
   this.broadcast = function(server, sender, msg) {

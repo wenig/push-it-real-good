@@ -1,4 +1,4 @@
-var connection = new WebSocket('ws://push-it-real-good.herokuapp.com:8001', ['soap', 'xmpp']);
+var connection = new WebSocket('ws://push-it-real-good.herokuapp.com', ['soap', 'xmpp']);
 
 connection.onopen = function () {
   send(document.body.getAttribute("data-auth-token")); //getCookie('ID'));

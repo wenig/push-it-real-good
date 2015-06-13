@@ -33,8 +33,8 @@ PushItRealGood.webSocketServer.on("connection", function(ws) {
   console.log(this.connections)
 
   ws.on("text", function (str) {
-    console.log(str)
-    PushItRealGood.clientConnections[str] = ws.key
+    var keys = str.split(' ')
+    PushItRealGood.register(keys[1], keys[0], ws)
   })
 
   ws.on("close", function() {

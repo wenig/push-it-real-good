@@ -3,8 +3,8 @@ function PushItRealGood() {
 
   this.webSocketServer = null
 
-  this.go = function(authTokens, secret, apiKey){
-
+  this.go = function(authTokens, secret, apiKey, message){
+    console.log(message)
   }
 
   this.broadcast = function(server, sender, msg) {

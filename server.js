@@ -14,7 +14,7 @@ app.get('/generate_api_key', function(req, res){
 })
 
 app.post('/push', function(req, res){
-  res.send(PushItRealGood.go(req.body.auth_tokens, req.body.secret, req.body.api_key))
+  res.send(PushItRealGood.go(req.body.auth_tokens, req.body.secret, req.body.api_key, req.body.message))
 })
 
 app.use(express.static(__dirname + "/"))

@@ -12,6 +12,6 @@ connection.onmessage = function (e) {
   alert(e.data);
 };
 
-function send(msg = ""){
+function send(msg){
   connection.send(msg);
 }

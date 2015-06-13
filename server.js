@@ -10,7 +10,7 @@ app.get('/', function(req, res) {
 })
 
 app.get('/generate_api_key', function(req, res){
-  res.send(require('./generate_api_key'))
+  res.send(require('./endpoints/generate_api_key'))
 })
 
 app.use(express.static(__dirname + "/"))

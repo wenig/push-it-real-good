@@ -8,16 +8,16 @@ function PushItRealGood() {
     console.log('--------------------')
     console.log(this.clientConnections[apiKey])
     console.log('--------------------')
-    console.log(this.clientConnections[apiKey]['auth'+authToken])
-    this.clientConnections[apiKey]['auth'+authToken].send(message)
+    console.log(this.clientConnections[apiKey][authToken])
+    this.clientConnections[apiKey][authToken].send(message)
   }
 
   this.register = function(apiKey, authToken, connection){
     if(this.clientConnections[apiKey]){
-      this.clientConnections[apiKey]['auth'+authToken] = connection
+      this.clientConnections[apiKey][authToken] = connection
     }else{
       this.clientConnections[apiKey] = []
-      this.clientConnections[apiKey]['auth'+authToken] = connection
+      this.clientConnections[apiKey][authToken] = connection
     }
   }
 

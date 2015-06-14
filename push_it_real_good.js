@@ -1,23 +1,22 @@
+var db = require('./../database')
+
 function PushItRealGood() {
   this.clientConnections = {}
 
   this.webSocketServer = null
 
   this.go = function(authToken, secret, apiKey, message){
-    console.log('--------------------')
-    console.log(this.clientConnections[apiKey][authToken])
-    console.log('--------------------')
-    console.log(this.clientConnections[apiKey])
-    console.log('--------------------')
-    this.clientConnections[apiKey][authToken].send(message)
+    this.clientConnections[apiKey+secret][authToken].send(message)
   }
 
   this.register = function(apiKey, authToken, connection){
-    if(this.clientConnections[apiKey]){
-      this.clientConnections[apiKey][authToken] = connection
+    var matchedKey = apiKey + getSecret(apiKey)
+
+    if(this.clientConnections[matchedKey]){
+      this.clientConnections[matchedKey][authToken] = connection
     }else{
-      this.clientConnections[apiKey] = {}
-      this.clientConnections[apiKey][authToken] = connection
+      this.clientConnections[matchedKey] = {}
+      this.clientConnections[matchedKey][authToken] = connection
     }
   }
 
@@ -27,6 +26,10 @@ function PushItRealGood() {
         conn.sendText(msg)
       }
     })
+  }
+
+  function getSecret(apiKey){
+    return db.callQuery("SELECT SINGLE secret FROM users WHERE api_key = '$1';", [apiKey]).rows[0].secret
   }
 }
 

@@ -17,13 +17,15 @@ function Database() {
         return console.error('error fetching client from pool', err)
       }
 
-      client.query(sql, function(err, result) {
+      client.query(sql, sqlVars, function(err, result) {
         console.log(sql)
         done();
 
         if(err) {
           return console.error('error running query', err);
         }
+
+        return result
       })
     })
   }

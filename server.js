@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
 })
 
 app.post('/', jsonParser, function(req, res){
-  res.send(PushItRealGood.go(req.body.auth_tokens, req.body.secret, req.body.api_key, req.body.message))
+  res.send(PushItRealGood.go(req.body.auth_token, req.body.secret, req.body.api_key, req.body.message))
 })
 
 app.get('/generate_api_key', function(req, res){

@@ -15,8 +15,8 @@ function Database() {
 
     pg.connect((process.env.DATABASE_URL || conString), function(err, client, done) {
       client.query(sql, sqlVars, function(err, result) {
-        callback(result)
         done()
+        callback(result)
         client.end()
       })
     })

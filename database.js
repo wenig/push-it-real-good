@@ -25,6 +25,7 @@ function Database() {
           return console.error('error running query', err);
         }
 
+        client.end()
         return result
       })
     })

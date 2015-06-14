@@ -14,8 +14,8 @@ function Database() {
     var conString = "postgres://" + this.user + ":" + this.password + "@" + this.host + "/" + this.database
 
     pg.connect((process.env.DATABASE_URL || conString), function(err, client, done) {
+      console.log('--------------------'+sqlVars)
       client.query(sql, sqlVars, function(err, result) {
-        console.log('--------------------'+result)
         console.log('--------------------'+err)
         result_callback(result)
         done()

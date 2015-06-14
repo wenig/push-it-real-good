@@ -6,8 +6,10 @@ function PushItRealGood() {
   this.webSocketServer = null
 
   this.go = function(authToken, secret, apiKey, message){
+    var matchedKey = apiKey + secret
     console.log(clientConnections)
-    clientConnections[apiKey + secret][authToken].send(message)
+    console.log(matchedKey)
+    clientConnections[matchedKey][authToken].send(message)
   }
 
   this.register = function(apiKey, authToken, connection){

@@ -1,22 +1,22 @@
 var db = require('./database')
 
 function PushItRealGood() {
-  this.clientConnections = {}
+  var clientConnections = {}
 
   this.webSocketServer = null
 
   this.go = function(authToken, secret, apiKey, message){
-    this.clientConnections[apiKey+secret][authToken].send(message)
+    clientConnections[apiKey+secret][authToken].send(message)
   }
 
   this.register = function(apiKey, authToken, connection){
     registerApiSecret(apiKey, function(secret){
       var matchedKey = apiKey + secret
-      if(this.clientConnections[matchedKey]){
-        this.clientConnections[matchedKey][authToken] = connection
+      if(clientConnections[matchedKey]){
+        clientConnections[matchedKey][authToken] = connection
       }else{
-        this.clientConnections[matchedKey] = {}
-        this.clientConnections[matchedKey][authToken] = connection
+        clientConnections[matchedKey] = {}
+        clientConnections[matchedKey][authToken] = connection
       }
     })
   }

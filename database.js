@@ -6,19 +6,20 @@ function Database() {
   this.user = null
   this.password = null
 
-  this.callQuery = function(sql){
-    var conString = "postgres://" + this.user + ":" + this.password + "@" + this.host + "/" + this.database
-    var test = query((process.env.DATABASE_URL || conString), sql)
-    console.log("----query-result---- "+test)
+  this.sql_result = function(result){
+
   }
 
-  function query(conString, sql){
-    pg.connect(conString, function(err, client, done) {
+  this.callQuery = function(sql, sqlVars, result_callback){
+    var conString = "postgres://" + this.user + ":" + this.password + "@" + this.host + "/" + this.database
+
+    pg.connect((process.env.DATABASE_URL || conString), function(err, client, done) {
       if(err) {
         return console.error('error fetching client from pool', err)
       }
 
       client.query(sql, sqlVars, function(err, result) {
+        result_callback(result)
         console.log(sql)
         done();
 
@@ -27,7 +28,6 @@ function Database() {
         }
 
         client.end()
-        return result
       })
     })
   }

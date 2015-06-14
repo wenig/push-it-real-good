@@ -10,14 +10,15 @@ function PushItRealGood() {
   }
 
   this.register = function(apiKey, authToken, connection){
-    var matchedKey = apiKey + getSecret(apiKey)
-
-    if(this.clientConnections[matchedKey]){
-      this.clientConnections[matchedKey][authToken] = connection
-    }else{
-      this.clientConnections[matchedKey] = {}
-      this.clientConnections[matchedKey][authToken] = connection
-    }
+    registerApiSecret(apiKey, function(secret){
+      var matchedKey = apiKey + secret
+      if(this.clientConnections[matchedKey]){
+        this.clientConnections[matchedKey][authToken] = connection
+      }else{
+        this.clientConnections[matchedKey] = {}
+        this.clientConnections[matchedKey][authToken] = connection
+      }
+    })
   }
 
   this.broadcast = function(server, sender, msg) {
@@ -28,8 +29,10 @@ function PushItRealGood() {
     })
   }
 
-  function getSecret(apiKey){
-    return db.callQuery("SELECT SINGLE secret FROM users WHERE api_key = '$1';", [apiKey]).rows[0].secret
+  function registerApiSecret(apiKey, callback){
+    return db.callQuery("SELECT SINGLE secret FROM users WHERE api_key = '$1';", [apiKey], function(result){
+      callback(result.row[0].secret)
+    })
   }
 }
 

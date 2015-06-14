@@ -5,7 +5,7 @@ function PushItRealGood() {
 
   this.go = function(authToken, secret, apiKey, message){
     console.log('--------------------')
-    console.log(this.clientConnections[apiKey][authToken])
+    console.log(this.clientConnections)
     console.log('--------------------')
     this.clientConnections[apiKey][authToken].send(message)
   }

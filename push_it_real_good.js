@@ -30,7 +30,7 @@ function PushItRealGood() {
   }
 
   function registerApiSecret(apiKey, callback){
-    return db.callQuery("SELECT secret FROM users WHERE api_key = '$1';", [apiKey], function(result){
+    return db.callQuery("SELECT secret FROM users WHERE api_key = '$1';", [apiKey, ''], function(result){
       callback(result.row[0].secret)
     })
   }

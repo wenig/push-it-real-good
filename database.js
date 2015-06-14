@@ -8,7 +8,8 @@ function Database() {
 
   this.callQuery = function(sql){
     var conString = "postgres://" + this.user + ":" + this.password + "@" + this.host + "/" + this.database
-    query((process.env.DATABASE_URL || conString), sql)
+    var test = query((process.env.DATABASE_URL || conString), sql)
+    console.log("----query-result---- "+test)
   }
 
   function query(conString, sql){

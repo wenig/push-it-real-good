@@ -15,7 +15,7 @@ function Database() {
 
     pg.connect((process.env.DATABASE_URL || conString), function(err, client, done) {
       client.query(sql, sqlVars, function(err, result) {
-        console.log('--------------------'+result.row)
+        console.log('--------------------'+JSON.stringify(result))
         callback(result)
         done()
         client.end()

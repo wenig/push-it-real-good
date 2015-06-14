@@ -14,7 +14,7 @@ function PushItRealGood() {
     if(this.clientConnections[apiKey]){
       this.clientConnections[apiKey][authToken] = connection
     }else{
-      this.clientConnections[apiKey] = []
+      this.clientConnections[apiKey] = {}
       this.clientConnections[apiKey][authToken] = connection
     }
   }

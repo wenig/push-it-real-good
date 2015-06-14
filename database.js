@@ -10,13 +10,13 @@ function Database() {
 
   }
 
-  this.callQuery = function(sql, sqlVars, result_callback){
+  this.callQuery = function(sql, sqlVars, callback){
     var conString = "postgres://" + this.user + ":" + this.password + "@" + this.host + "/" + this.database
 
     pg.connect((process.env.DATABASE_URL || conString), function(err, client, done) {
       client.query(sql, sqlVars, function(err, result) {
-        console.log('--------------------'+result)
-        result_callback(result)
+        console.log('--------------------'+result.row)
+        callback(result)
         done()
         client.end()
       })
